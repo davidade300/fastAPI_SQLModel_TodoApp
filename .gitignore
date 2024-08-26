@@ -1,0 +1,7 @@
+*.db
+__pycache__/
+.mypy_cache/
+.vscode
+todos.db
+todos copy.db
+venv
