@@ -1,16 +1,13 @@
-from sqlmodel import create_engine, Session
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
 
-SQLALCHEMY_DATABASE_URL = "sqlite:///./todos.db"
+DATABASE_URL = "sqlite:///./todos.db"
 
-engine = create_engine(
-    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
-)
+engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 
+# create a new session
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-def get_session():
-    with Session(engine) as session:
-        yield session
-
-
-# This replaces the Base = declarative_base()
-# All your models will inherit from SQLModel instead of Base
+Base = declarative_base()  # create a object of the database which will then
+# be able to interacti with the tables that we create in the fucture
