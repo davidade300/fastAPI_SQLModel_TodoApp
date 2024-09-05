@@ -5,3 +5,4 @@ __pycache__/
 todos.db
 todos copy.db
 venv
+sets.json
