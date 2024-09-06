@@ -8,7 +8,7 @@ from TodoApp.models import Todos
 
 from .auth import get_current_user
 
-router = APIRouter()
+router = APIRouter(prefix="/todos", tags=["todos"])
 
 
 user_dependency = Annotated[dict, Depends(get_current_user)]
@@ -30,7 +30,7 @@ async def read_all(db: db_dependency, user: user_dependency):
     return db.query(Todos).filter(Todos.owner_id == user.get("id")).all()
 
 
-@router.get("/todo/{todo_id}", status_code=status.HTTP_200_OK)
+@router.get("/{todo_id}", status_code=status.HTTP_200_OK)
 async def read_by_id(
     user: user_dependency,
     db: db_dependency,
@@ -52,7 +52,7 @@ async def read_by_id(
     return todo_model
 
 
-@router.post("/todo/", status_code=status.HTTP_201_CREATED)
+@router.post("/", status_code=status.HTTP_201_CREATED)
 async def new_todo(
     user: user_dependency,
     db: db_dependency,
@@ -66,7 +66,7 @@ async def new_todo(
     db.commit()
 
 
-@router.put("/todo/{todo_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.put("/{todo_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def update_todo(
     user: user_dependency,
     db: db_dependency,
@@ -92,7 +92,7 @@ async def update_todo(
     db.commit()
 
 
-@router.delete("/todo/{todo_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/{todo_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_todo(
     user: user_dependency,
     db: db_dependency,
