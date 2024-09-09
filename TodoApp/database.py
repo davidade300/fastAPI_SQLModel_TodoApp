@@ -5,9 +5,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Session, sessionmaker
 
-DATABASE_URL = "sqlite:///./todos.db"
+DATABASE_URL = "postgresql://admin:220498@localhost:5432/TodoAPP"
 
-engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+engine = create_engine(DATABASE_URL)
 
 # create a new session
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
