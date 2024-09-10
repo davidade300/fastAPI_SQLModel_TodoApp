@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:13
+    container_name: TodoAPPDB
+    environment:
+      POSTGRES_DB: TodoAPP
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 220498
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
