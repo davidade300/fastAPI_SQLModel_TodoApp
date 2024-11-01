@@ -2,8 +2,8 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, Path, status
 
-from TodoApp.database import db_dependency
-from TodoApp.models import Todos
+from database import db_dependency
+from models import Todos
 
 from .auth import get_current_user
 

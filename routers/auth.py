@@ -7,8 +7,8 @@ from jose import JWTError, jwt
 from passlib.context import CryptContext
 from pydantic import BaseModel
 
-from TodoApp.database import db_dependency
-from TodoApp.models import Users
+from database import db_dependency
+from models import Users
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
